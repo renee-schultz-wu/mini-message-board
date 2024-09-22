@@ -10,24 +10,7 @@ const indexRouter = require("./routes/indexRouter")
 const newRouter = require("./routes/newRouter")
 
 
-const messages = [
-    {
-      text: "Hi there!",
-      user: "Amando",
-      added: new Date()
-    },
-    {
-      text: "Hello World!",
-      user: "Charles",
-      added: new Date()
-    }
-  ];
-  
-
-app.get("/", (req, res) => {
-    res.render("index", { title: "Mini Messageboard" , messages: messages });
-  });
-  
+app.use("/", indexRouter);
 
 
 const PORT = 3000;

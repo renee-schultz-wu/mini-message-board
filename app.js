@@ -8,34 +8,21 @@ app.use(express.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-const messages = [
-    {
-      text: "Hi there!",
-      user: "Amando",
-      added: new Date()
-    },
-    {
-      text: "Hello World!",
-      user: "Charles",
-      added: new Date()
-    }
-  ];
+const { getALLMessages, addNewMessage, viewById } = require("./controllers/control")
+
   
-app.get("/", (req, res) => {
-    res.render("index", { title: "Mini Messageboard" , messages: messages });
-});
+app.get("/", getALLMessages);
 
 
 app.get("/new", (req, res) => {
-    res.render("form", {})
+    res.render("form", {});
 })
 
-app.post("/new", (req, res) => {
-    messages.push({ text: req.body.message, user: req.body.username, added: new Date() });
-    res.redirect("/")
-})
+app.post("/new", addNewMessage)
 
 
+
+app.get("/view", viewById)
 
 
 const PORT = 3000;

@@ -7,7 +7,9 @@
 
         <ul>
             <% messages.forEach((message) => { %>
-              <%- include('message', {message: message}); %>
+                <%- include('message', {message: message}); %>
+                <%- console.log(message.id)  %>
+                <a href="/view?<%=message.id%>"> view message  </a>
             <% }); %>
           </ul>
           
